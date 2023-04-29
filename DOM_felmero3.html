@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bújócska</title>
+</head>
+
+<body>
+    <button id="fadeButton">Kattints</button><img src="hidingCat.jpg" id="catImage">
+
+    <script>
+
+        let catImage = document.getElementById('catImage')
+        let fadeButton = document.getElementById('fadeButton')
+
+        let isFaded = false
+        let fadeDuration = 5000
+
+        fadeButton.addEventListener('click', () => {
+            if (!isFaded) {
+                catImage.style.opacity = 0
+                isFaded = true;
+            } else {
+                catImage.style.opacity = 1
+                isFaded = false
+            }
+        })
+
+        function fadeOut() {
+            let opacity = Number(catImage.style.opacity)
+            if (opacity > 0) {
+                opacity -= 0.05
+                catImage.style.opacity = opacity
+                setTimeout(fadeOut, fadeDuration / 100)
+            }
+        }
+
+        function fadeIn() {
+            let opacity = Number(catImage.style.opacity)
+            if (opacity < 1) {
+                opacity += 0.05
+                catImage.style.opacity = opacity
+                setTimeout(fadeIn, fadeDuration / 100)
+            }
+        }
+
+        fadeButton.addEventListener('click', () => {
+            if (!isFaded) {
+                fadeOut()
+                isFaded = true
+            } else {
+                fadeIn()
+                isFaded = false
+            }
+        })
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
